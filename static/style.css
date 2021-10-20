@@ -1,0 +1,32 @@
+
+/*amélioration de la qualité graphique et textuelle des différents éléments*/
+
+body {
+  background-color: lightblue;
+}
+
+label {
+    
+    font: 1rem 'Fira Sans';sans-serif
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+
+
+input,
+label {
+    margin: .4rem 0;
+}
+
+
+#re{
+	display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+#recherche{
+	text-align: right;
+}

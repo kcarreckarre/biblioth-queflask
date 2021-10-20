@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}"><!--link d'un style css-->
+  </head>
+    <body>
+
+      <h1>Add book</h1> <!-- titre en h1-->
+      <form method="POST" action="/"><!--liaison de l'action python aux actions html
+        dont a l'intérieur nous avons des balises pour modéliser le l'application-->
+        
+        <label for = "title">Title:</label><!--balise pour effectuer un titre de champ-->
+        <input type="text" name="title" required><!--balise pour demander a l'utilisateur une saisi obligatoire pour efectuer l'action-->
+
+        <label >Author:</label>
+        <input type="text" name="author" required>
+
+
+        <label >Edition:</label>
+        <input type="text" name="edition" required>
+
+        <label >year of publication:</label>
+        <input type="month" name="year_of_publication" required>
+
+        <input type="submit" value="Add"><!--bouton permettant de soumettre sa saisie notament a python-->
+
+      </form>
+
+      <form id="recherche" method="POST" action="./search"><!--liaison de l'action python aux actions html
+        dont a l'intérieur nous avons des balises pour modéliser le l'application -->
+        <label id="re">Search Book:</label>
+        <input type="month" name="search_month"><!--demander l'utlisateur de choisir une date -->
+        <input type="search"  name="search_name"aria-label="Search through site content"><!--demander l'utlisateur de saisir un nom -->
+
+        <button>Search</button><!-- bouton permetteant d'effectuer l'action search-->
+
+      </form>
+      
+
+      <form action="./edit" method="POST"> <!-- or method="post" -->
+          <input type="submit" value="Edit" >
+      </form>
+
+        
+      
+
+      <form method="POST" action="./delete_all" style="display: inline"><!--liaison de l'action python aux actions html>
+        dont a l'intérieur nous avons des balises pour modéliser le l'application -->
+        <input type="submit" value="Delete_all"><!-- bouton permetteant d'effectuer l'action de delete_all-->
+      </form>
+
+      <h1>Books</h1>
+      <table><!--creation d'une tableau-->
+        
+        {% for book in books %}
+          <tr>
+            
+            
+           
+            <td>
+              <form method="POST" action="./update" style="display: inline"><!--liaison de l'action python aux actions html
+        dont a l'intérieur nous avons des balises pour modéliser le l'application -->
+                <input type="hidden" value="{{book.id}}"  name="id">
+                <input type="text"  value="{{book.title}}" {{a}} name="newtitle">
+                <input type="text" value="{{book.author}}" {{a}} name="newauthor">
+                <input type="text" value="{{book.edition}}" {{a}} name="newedition">
+                <input type="month" value="{{book.year_of_publication}}"{{a}} name="newyear_of_publication">
+                <!--différente saisi de l'utlisateur-->
+                <input type="submit" value="Update"><!-- bouton permetteant d'effectuer l'action update-->
+              </form>
+            </td>
+            <td>
+              <form method="POST" action="./delete" style="display: inline"><!--liaison de l'action python aux actions html
+        dont a l'intérieur nous avons des balises pour modéliser le l'application -->
+                <input type="hidden" value="{{book.id}}" name="id"><!--input cache ( non visible par l'utilisateur)-->
+                <input type="submit" value="Delete"><!--bouton permetteant d'effectuer l'action delete-->
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </body>
+  </html>
